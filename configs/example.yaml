@@ -1,0 +1,31 @@
+# Example configuration matching AGENTS.md defaults.
+role: client # or server
+
+tcp:
+  server_addr: "ec2.example.com:5443" # client only
+  listen_addr: "0.0.0.0:5443"         # server only
+  lanes: 5
+  tcp_nodelay: true
+  tcp_buf: 16384
+  idle_seconds: 120
+
+udp:
+  listen_addr: "127.0.0.1:15000"      # client ingress
+  wg_udp_addr: "127.0.0.1:51820"      # server egress
+
+queue:
+  max_packets: 4096
+  max_bytes: 8388608
+  drop_policy: oldest
+
+metrics:
+  listen_addr: "127.0.0.1:5080"
+  path: "/metrics"
+  per_client_cn: true
+  per_lane_label: false
+
+tls:
+  ca_cert: "/etc/ut/ca.pem"
+  cert: "/etc/ut/node.pem"
+  key: "/etc/ut/node.key"
+  disable: false
